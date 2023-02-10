@@ -1,0 +1,41 @@
+@use "src/common/styles/mixins/animate.modal.mixin" as mixin;
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+}
+
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 10px;
+  z-index: 100;
+
+  @include mixin.modal(openTop);
+
+  &Close {
+    @include mixin.modal(closeTop);
+  }
+}
+
+.backdrop {
+  width: inherit;
+  height: inherit;
+  background: var(--black);
+  opacity: 0.4;
+
+  @include mixin.modal(openBackdrop);
+
+  &-close {
+    @include mixin.modal(closeBackdrop);
+  }
+}
+
+

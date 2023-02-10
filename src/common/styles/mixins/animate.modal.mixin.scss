@@ -1,0 +1,40 @@
+@mixin modal($value) {
+  @if $value == openTop {
+    animation: openPopupTop 0.3s ease-out;
+  }
+  @if $value == closeTop {
+    animation: closePopupTop 0.3s ease-out;
+  }
+  @if $value == openBackdrop {
+    animation: backdrop 0.3s ease-out;
+  }
+}
+
+
+@keyframes openPopupTop {
+  from {
+    transform: translate(-50%, 1000px);
+  }
+  to {
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes closePopupTop {
+  from {
+    transform: translate(-50%, -50%);
+  }
+  to {
+    transform: translate(-50%, 1000px);
+  }
+}
+
+@keyframes backdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.4;
+  }
+}
+

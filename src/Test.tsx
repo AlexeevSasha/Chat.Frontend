@@ -1,4 +1,5 @@
-import { EventBusInstance } from './common/utils/EventBus';
+import { EventBusModal, EventBusToast } from './common/utils/eventBus';
+import { EventBusNames } from './modules/modal/interfaces/modal';
 
 export const Test = () => {
   return (
@@ -8,28 +9,31 @@ export const Test = () => {
       <br />
       <button
         onClick={() => {
-          EventBusInstance.emit('test-modal', {
-            isOpen: true,
-            render: (
+          EventBusModal.emit(EventBusNames.POPUP_MODAL, {
+            open: true,
+            renderElement: (
               <div>
                 Получается что тут какой-то треш ебанный
                 <br />
-                <button
-                  onClick={() =>
-                    EventBusInstance.emit('test-modal', {
-                      isOpen: true,
-                      render: <div>еббать получилось</div>
-                    })
-                  }
-                >
-                  высываю 2 модалку
-                </button>
+                <br />
+                <br /> <br />
+                kj l f
               </div>
-            )
+            ),
           });
         }}
       >
         Open modal screen
+      </button>
+      <button
+        onClick={() =>
+          EventBusToast.emit(EventBusNames.TOAST_MODAL, {
+            open: true,
+            text: 'Это просто ахуенно' + Math.random().toString(36),
+          })
+        }
+      >
+        Open notification
       </button>
     </div>
   );
