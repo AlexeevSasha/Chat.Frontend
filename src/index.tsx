@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/styles.scss'
+import './common/styles/styles.scss';
+import { RootModals } from './modules/modal/components/RootModals';
 
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <React.StrictMode>
-   <div>sdf</div>
-  </React.StrictMode>
+  <>
+    <RootModals />
+  </>
 );
-
-
