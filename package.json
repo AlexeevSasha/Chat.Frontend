@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "typed-scss-modules": "typed-scss-modules src --watch --includePaths src/common/styles",
+    "typed-scss-modules": "typed-scss-modules src --watch ",
     "dev": "set PORT=5500 && react-scripts start && typed-scss-modules",
     "build": "react-scripts build"
   },

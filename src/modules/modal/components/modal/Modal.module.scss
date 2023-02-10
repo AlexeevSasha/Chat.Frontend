@@ -9,7 +9,6 @@
   z-index: 99;
 }
 
-
 .content {
   position: absolute;
   left: 50%;
@@ -33,7 +32,7 @@
 
   @include mixin.modal(openBackdrop);
 
-  &-close {
+  &Close {
     @include mixin.modal(closeBackdrop);
   }
 }

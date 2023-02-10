@@ -3,10 +3,13 @@
     animation: openPopupTop 0.3s ease-out;
   }
   @if $value == closeTop {
-    animation: closePopupTop 0.3s ease-out;
+    animation: closePopupTop 0.3s ease-out forwards;
   }
   @if $value == openBackdrop {
-    animation: backdrop 0.3s ease-out;
+    animation: openBackdrop 0.3s ease-out;
+  }
+  @if $value == closeBackdrop {
+    animation: closeBackdrop 0.3s ease-out forwards;
   }
 }
 
@@ -14,27 +17,38 @@
 @keyframes openPopupTop {
   from {
     transform: translate(-50%, 1000px);
+    opacity: 0;
   }
   to {
     transform: translate(-50%, -50%);
+    opacity: 1;
   }
 }
-
 @keyframes closePopupTop {
   from {
     transform: translate(-50%, -50%);
+    opacity: 1;
   }
   to {
     transform: translate(-50%, 1000px);
+    opacity: 0;
   }
 }
 
-@keyframes backdrop {
+@keyframes openBackdrop {
   from {
     opacity: 0;
   }
   to {
     opacity: 0.4;
+  }
+}
+@keyframes closeBackdrop {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 0;
   }
 }
 

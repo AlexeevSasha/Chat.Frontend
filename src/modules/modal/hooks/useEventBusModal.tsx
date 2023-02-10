@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { EventBusNames } from '../interfaces/modal';
 import { EventBusModal } from '../../../common/utils/eventBus';
-import { Modals } from '../components/modal/Modals';
+import { Modal } from '../components/modal/Modals';
 
 interface IProps {
   setModals: (prev: (value: Map<number, JSX.Element>) => Map<number, JSX.Element>) => void;
@@ -14,7 +14,7 @@ export const useEventBusModal = ({ setModals }: IProps) => {
         const id = prev.size + 1;
         return new Map(prev).set(
           id,
-          <Modals key={id} id={id} open={detail?.open} renderElement={detail?.renderElement} />
+          <Modal key={id} id={id} open={detail?.open} renderElement={detail?.renderElement} />
         );
       });
     });
