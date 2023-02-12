@@ -4,4 +4,23 @@
 
 body {
   font-family: 'Montserrat', sans-serif;
+  color: var(--black);
+}
+
+
+
+
+//ripple
+.ripple {
+  position: absolute;
+  background: #FFFFFF;
+  opacity: 25%;
+  transform: scale(0);
+  border-radius: 50%;
+}
+@keyframes ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
 }
