@@ -1,23 +1,40 @@
-import { Input } from '../../../../common/components/inputs/input/Input';
-import { Button } from '../../../../common/components/button/Button';
-import { useFormik } from 'formik';
-import { signInValidation } from '../../validation/signIn.validation';
 import styles from './sigh.module.scss';
+import { Input } from '../../../../common/components/inputs/input/Input';
+import { useFormik } from 'formik';
+import { Button } from '../../../../common/components/button/Button';
+import { signUpValidation } from '../../validation/signUp.validation';
 
-export const SignInForm = () => {
+export const SignUpForm = () => {
   const formik = useFormik({
     initialValues: {
+      firstname: '',
+      lastname: '',
       email: '',
       password: '',
     },
-    validate: signInValidation,
+    validate: signUpValidation,
     onSubmit: (values) => {
       console.log(values);
     },
   });
-
   return (
     <form className={styles.form} onSubmit={formik.handleSubmit}>
+      <Input
+        id={'firstname'}
+        name={'firstname'}
+        placeholder={'Firstname'}
+        value={formik.values.firstname}
+        onChange={formik.handleChange}
+        error={formik.errors.firstname && formik.touched.firstname ? formik.errors.firstname : ''}
+      />
+      <Input
+        id={'lastname'}
+        name={'lastname'}
+        placeholder={'Lastname'}
+        value={formik.values.lastname}
+        onChange={formik.handleChange}
+        error={formik.errors.lastname && formik.touched.lastname ? formik.errors.lastname : ''}
+      />
       <Input
         id={'email'}
         name={'email'}
@@ -34,7 +51,7 @@ export const SignInForm = () => {
         onChange={formik.handleChange}
         error={formik.touched.password && formik.errors.password ? formik.errors.password : ''}
       />
-      <Button type={'submit'}>Send</Button>
+      <Button type={'submit'}>Sing Up</Button>
     </form>
   );
 };

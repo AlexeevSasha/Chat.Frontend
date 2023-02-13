@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import styles from './Modal.module.scss';
+import styles from './modal.module.scss';
 import { EventBusModal } from '../../../../common/utils/eventBus';
 import { EventBusNames } from '../../interfaces/modal';
 import classNames from 'classnames';

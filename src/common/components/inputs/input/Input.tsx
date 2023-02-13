@@ -16,7 +16,13 @@ export const Input = ({ id, error, ...attr }: IProps) => {
           className={classNames(styles.input, { [styles.inputError]: !!error })}
           {...attr}
         />
-        <label htmlFor={id} className={classNames(styles.label, { [styles.labelTop]: attr.value })}>
+        <label
+          htmlFor={id}
+          className={classNames(styles.label, {
+            [styles.labelTop]: attr.value,
+            [styles.labelTopError]: !!error,
+          })}
+        >
           {attr.placeholder}
         </label>
       </div>
