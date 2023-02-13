@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, useRef } from 'react';
 import styles from './button.module.scss';
-import useRipple from '../../hoooks/useRipple';
+import useRipple from '../../hooks/useRipple';
 
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 

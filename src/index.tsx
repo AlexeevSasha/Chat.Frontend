@@ -1,31 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './common/styles/styles.scss';
 import { RootModals } from './modules/modal/components/RootModals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { SignInPage } from './pages/SignInPage';
-import { SignUpPage } from './pages/SignUpPage';
+import { RouterProvider } from 'react-router-dom';
+import { useCreateRouter } from './common/hooks/useCreateRouter';
+import './common/styles/styles.scss';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-
-const router = createBrowserRouter([
-  {
-    path: '/login',
-    element: <SignInPage />,
-  },
-  {
-    path: '/register',
-    element: <SignUpPage />,
-  },
-  {
-    path: '*',
-    element: <div>Лох, такой страницы нет!</div>,
-  },
-]);
+const Routing = () => <RouterProvider router={useCreateRouter()} />;
 
 root.render(
   <>
-    <RouterProvider router={router} />
+    <Routing />
     <RootModals />
   </>
 );
