@@ -2,7 +2,7 @@ import { Input } from '../../../../common/components/inputs/input/Input';
 import { Button } from '../../../../common/components/button/Button';
 import { useFormik } from 'formik';
 import { signInValidation } from '../../validation/signIn.validation';
-import styles from './sigh.module.scss';
+import styles from '../../styles/auth.form.module.scss';
 
 export const SignInForm = () => {
   const formik = useFormik({

@@ -2,20 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './common/styles/styles.scss';
 import { RootModals } from './modules/modal/components/RootModals';
-import { SignIn } from './pages/auth/SignIn';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { SignUp } from './pages/auth/SignUp';
+import { SignInPage } from './pages/SignInPage';
+import { SignUpPage } from './pages/SignUpPage';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 const router = createBrowserRouter([
   {
     path: '/login',
-    element: <SignIn />,
+    element: <SignInPage />,
   },
   {
     path: '/register',
-    element: <SignUp />,
+    element: <SignUpPage />,
   },
   {
     path: '*',

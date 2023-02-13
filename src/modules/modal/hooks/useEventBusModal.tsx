@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { EventBusNames } from '../interfaces/modal';
 import { EventBusModal } from '../../../common/utils/eventBus';
-import { Modal } from '../components/modal/Modals';
+import { Modal } from '../components/Modal';
 
 interface IProps {
   setModals: (prev: (value: Map<number, JSX.Element>) => Map<number, JSX.Element>) => void;

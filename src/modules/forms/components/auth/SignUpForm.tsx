@@ -1,8 +1,8 @@
-import styles from './sigh.module.scss';
 import { Input } from '../../../../common/components/inputs/input/Input';
 import { useFormik } from 'formik';
 import { Button } from '../../../../common/components/button/Button';
 import { signUpValidation } from '../../validation/signUp.validation';
+import styles from '../../styles/auth.form.module.scss';
 
 export const SignUpForm = () => {
   const formik = useFormik({

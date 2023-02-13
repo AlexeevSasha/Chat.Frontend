@@ -1,9 +1,9 @@
 import { useCallback, useState } from 'react';
-import styles from './modal.module.scss';
-import { EventBusModal } from '../../../../common/utils/eventBus';
-import { EventBusNames } from '../../interfaces/modal';
+import styles from '../styles/modal.module.scss';
 import classNames from 'classnames';
-import { useDebounceModal } from '../../hooks/useDebounceModal';
+import { EventBusModal } from '../../../common/utils/eventBus';
+import { EventBusNames } from '../interfaces/modal';
+import { useDebounceModal } from '../hooks/useDebounceModal';
 
 type Prop = {
   id: number;

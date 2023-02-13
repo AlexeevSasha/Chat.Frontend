@@ -1,6 +1,6 @@
-import styles from './auth.module.scss';
-import { Form } from '../../modules/forms/components/Form';
+import styles from '../styles/auth.module.scss';
 import { Link } from 'react-router-dom';
+import { Form } from '../../forms/components/Form';
 
 export const SignUp = () => {
   return (
