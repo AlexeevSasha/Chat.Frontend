@@ -5,7 +5,7 @@ export class BaseRequest {
     this.baseApi = process.env.REACT_APP_BASE_URL as string;
   }
 
-  async fetch(url: string, data: Record<string, any>, token?: string) {
+  async fetch(url: string, data: Record<string, unknown>, token?: string) {
     const headersToken = token ? { Authorization: `Bearer ${token}` } : null;
     const headersMultiPart =
       typeof data.body === 'string' ? { 'Content-type': 'application/json;charset=utf-8' } : null;
@@ -16,6 +16,7 @@ export class BaseRequest {
         ...headersToken,
         ...headersMultiPart,
       },
+      credentials: 'include',
     });
     if (response.ok) {
       if (response.headers.get('Content-Length') === '0') {
@@ -31,16 +32,16 @@ export class BaseRequest {
     }
   }
 
-  get(url: string, token?: string) {
+  get<T>(url: string, token?: string): Promise<T> {
     return this.fetch(url, { method: 'GET' }, token);
   }
-  post(url: string, body: string | FormData, token?: string) {
+  post<T>(url: string, body: string | FormData, token?: string): Promise<T> {
     return this.fetch(url, { method: 'POST', body }, token);
   }
-  put(url: string, body: string, token: string) {
+  put<T>(url: string, body: string, token: string): Promise<T> {
     return this.fetch(url, { method: 'PUT', body }, token);
   }
-  delete(url: string, token: string) {
+  delete<T>(url: string, token: string): Promise<T> {
     return this.fetch(url, { method: 'DELETE' }, token);
   }
 }

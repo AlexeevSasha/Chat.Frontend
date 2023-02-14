@@ -1,10 +1,10 @@
-export interface IEventBusDetailsModal {
+export interface IModal {
   id?: number;
   open?: boolean;
   renderElement?: JSX.Element;
 }
 
-export interface IEventBusDetailsToast {
+export interface IToast {
   id?: number;
   open?: boolean;
   text?: string;

@@ -23,11 +23,12 @@ export const signInValidation = (values: IValues) => {
     errors.password = 'Password is required';
   } else if (!passwordLengthRegex.test(values.password)) {
     errors.password = 'Password from 6 to 20 characters';
-  } else if (!passwordUppercaseLetterRegex.test(values.password)) {
-    errors.password = 'Password must contain one or more uppercase letters';
-  } else if (!passwordSpecialCharacterRegex.test(values.password)) {
-    errors.password = 'Password must contain at least one character';
   }
+  // else if (!passwordUppercaseLetterRegex.test(values.password)) {
+  //   errors.password = 'Password must contain one or more uppercase letters';
+  // } else if (!passwordSpecialCharacterRegex.test(values.password)) {
+  //   errors.password = 'Password must contain at least one character';
+  // }
 
   return errors;
 };

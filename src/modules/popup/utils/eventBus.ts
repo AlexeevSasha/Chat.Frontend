@@ -1,5 +1,5 @@
-import { EventBusNames } from '../../modules/modal/interfaces/modal';
-import { IEventBusDetailsModal, IEventBusDetailsToast } from '../interfaces/eventBusDetails';
+import { IModal, IToast } from '../interfaces/popup';
+import { EventBusNames } from '../interfaces/eventBusNames';
 
 class EventBus<T> {
   private eventTarget: EventTarget;
@@ -25,7 +25,7 @@ class EventBus<T> {
   }
 }
 
-const EventBusModal = new EventBus<IEventBusDetailsModal>();
-const EventBusToast = new EventBus<IEventBusDetailsToast>();
+const EventBusModal = new EventBus<IModal>();
+const EventBusToast = new EventBus<IToast>();
 
 export { EventBusModal, EventBusToast };

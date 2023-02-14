@@ -2,10 +2,11 @@ import { Input } from '../../../../common/components/inputs/input/Input';
 import { useFormik } from 'formik';
 import { Button } from '../../../../common/components/button/Button';
 import { signUpValidation } from '../../validation/signUp.validation';
-import styles from '../../styles/auth.form.module.scss';
+import styles from './auth.form.module.scss';
+import { IAuthSighUp } from '../../../auth/interfaces/auth';
 
 export const SignUpForm = () => {
-  const formik = useFormik({
+  const formik = useFormik<IAuthSighUp>({
     initialValues: {
       firstname: '',
       lastname: '',

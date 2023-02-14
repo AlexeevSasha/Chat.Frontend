@@ -1,4 +1,4 @@
-import styles from '../styles/auth.module.scss';
+import styles from './auth.module.scss';
 import { Form } from '../../forms/components/Form';
 
 export const SignIn = () => {
