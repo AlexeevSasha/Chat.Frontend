@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  min-width: 250px;
+  //удалить
+  max-width: 900px;
+}
+
+.verticalLine {
+  z-index: 10;
+  position: absolute;
+  cursor: e-resize;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 5px;
+  border-right: 1px solid var(--grey);
+}
