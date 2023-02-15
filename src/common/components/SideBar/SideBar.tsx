@@ -1,11 +1,17 @@
 import styles from './sideBar.module.scss';
-import { Input } from '../inputs/input/Input';
+import { useRef } from 'react';
+import { useResizableWidth } from '../../hooks/useResizableWidth';
+import { SearchInput } from '../../ui/inputs/SearchInput';
 
 export const SideBar = () => {
+  const ref = useRef(null);
+  const { activeEvent, width } = useResizableWidth(ref);
+
   return (
-    <div className={styles.container}>
-      <Input id="search" name="search" />
-      <div className={styles.verticalLine} />
-    </div>
+    <aside style={{ width }} className={styles.container}>
+      <SearchInput id="search" name="search" placeholder={'Search...'} />
+      <div className={styles.verticalLine} ref={ref} />
+      {activeEvent ? <div className={styles.freeze} /> : null}
+    </aside>
   );
 };

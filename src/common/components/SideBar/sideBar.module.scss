@@ -1,10 +1,7 @@
 .container {
   position: relative;
   min-height: 100%;
-  width: 100%;
-  min-width: 250px;
-  //удалить
-  max-width: 900px;
+  flex-shrink: 0;
 }
 
 .verticalLine {
@@ -16,4 +13,19 @@
   height: 100vh;
   width: 5px;
   border-right: 1px solid var(--grey);
+}
+
+.freeze {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 100vw;
+  cursor: e-resize;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  z-index: 90;
 }

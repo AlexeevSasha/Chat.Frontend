@@ -1,9 +1,9 @@
-import { Input } from '../../../../common/components/inputs/input/Input';
 import { useFormik } from 'formik';
-import { Button } from '../../../../common/components/button/Button';
 import { signUpValidation } from '../../validation/signUp.validation';
 import styles from './auth.form.module.scss';
 import { IAuthSighUp } from '../../../auth/interfaces/auth';
+import { Input } from '../../../../common/ui/inputs/Input';
+import { Button } from '../../../../common/ui/button/Button';
 
 export const SignUpForm = () => {
   const formik = useFormik<IAuthSighUp>({

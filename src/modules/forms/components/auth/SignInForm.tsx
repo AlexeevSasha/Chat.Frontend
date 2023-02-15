@@ -1,10 +1,10 @@
-import { Input } from '../../../../common/components/inputs/input/Input';
-import { Button } from '../../../../common/components/button/Button';
 import { useFormik } from 'formik';
 import { signInValidation } from '../../validation/signIn.validation';
 import styles from './auth.form.module.scss';
 import { useUserStore } from '../../../user/store';
 import { IAuthSighIn } from '../../../auth/interfaces/auth';
+import { Input } from '../../../../common/ui/inputs/Input';
+import { Button } from '../../../../common/ui/button/Button';
 
 export const SignInForm = () => {
   const login = useUserStore((state) => state.login);
