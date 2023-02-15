@@ -1,6 +1,7 @@
 import styles from './auth.module.scss';
 import { Link } from 'react-router-dom';
 import { Form } from '../../forms/components/Form';
+import { paths } from '../../../common/constants/paths';
 
 export const SignUp = () => {
   return (
@@ -9,7 +10,7 @@ export const SignUp = () => {
         <h2>Sign Up</h2>
         <Form.SignUpForm />
         <div className={styles.link}>
-          Уже есть аккаунт? <Link to={'/login'}>Войти</Link>
+          Got an account? <Link to={paths.login}>Sign in</Link>
         </div>
       </div>
     </div>

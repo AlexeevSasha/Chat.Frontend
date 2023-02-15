@@ -47,6 +47,7 @@ export const SignUpForm = () => {
       <Input
         id={'password'}
         name={'password'}
+        type={'password'}
         placeholder={'Password'}
         value={formik.values.password}
         onChange={formik.handleChange}

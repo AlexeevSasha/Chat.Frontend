@@ -27,6 +27,10 @@
   &Error {
     border: 2px solid var(--error);
   }
+
+  &Password {
+    padding-right: 34px;
+  }
 }
 
 .label {
@@ -60,12 +64,27 @@
   }
 }
 
+.eye {
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translate(0, -50%);
+
+  svg {
+    stroke: var(--grey);
+  }
+}
+
 .error {
   color: var(--error);
   font-size: 13px;
   text-align: right;
   margin-top: 4px;
 }
+
 
 //search
 .search {
