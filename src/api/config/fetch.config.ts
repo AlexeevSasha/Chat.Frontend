@@ -1,3 +1,5 @@
+import { customLocalStorage } from '../../common/utils/customLocalStorage';
+
 const originalFetch = fetch;
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -13,6 +15,8 @@ fetch = (
       if (response.status === 401) return data;
 
       const { access_token } = await response.json();
+      customLocalStorage.setAccessToken(access_token);
+
       return fetch(args[0], {
         ...args[1],
         headers: { ...args[1]?.headers, Authorization: `Bearer ${access_token}` },

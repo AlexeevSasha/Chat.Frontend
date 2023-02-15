@@ -8,14 +8,16 @@
   padding: 14px 14px 13px;
   border: 2px solid var(--grey);
   border-radius: 12px;
+  transition: all 0.1s ease-in-out;
+  outline: none;
 
   &:focus {
     border: 2px solid var(--blueMain);
-    outline: none;
   }
 
   &::placeholder {
     opacity: 0;
+    color: #797979
   }
 
   &:disabled {
@@ -64,3 +66,40 @@
   text-align: right;
   margin-top: 4px;
 }
+
+//search
+.search {
+  border: 2px solid var(--light-gray);
+  background: var(--light-gray);
+  padding-left: 12px;
+  transition: padding-left 0.3s ease-in-out;
+
+  &:focus {
+    background: var(--white);
+    padding-left: 36px;
+
+    & + .searchIcon {
+      opacity: 1;
+    }
+  }
+
+  &::placeholder {
+    opacity: 1;
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 12px;
+  transform: translate(0, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  svg {
+    fill: #797979;
+  }
+}
+
