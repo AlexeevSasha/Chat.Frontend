@@ -3,8 +3,9 @@ import { IUser } from '../../user/interfaces/user';
 
 export interface IConversation {
   id: string;
+  lastMessageAt: Date;
   creator: IUser;
   recipient: IUser;
-  createdAt: string;
-  messages: IMessage;
+  createdAt: Date;
+  lastMessage: IMessage;
 }
