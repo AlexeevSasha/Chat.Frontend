@@ -1,8 +1,8 @@
 import styles from './input.module.scss';
 import classNames from 'classnames';
 import { InputHTMLAttributes, useState } from 'react';
-import { EyeOpenIcon } from '../../components/Icon/EyeOpenIcon';
-import { EyeCloseIcon } from '../../components/Icon/EyeCloseIcon';
+import { IconEyeOpen } from '../../components/Icon/IconEyeOpen';
+import { IconEyeClose } from '../../components/Icon/IconEyeClose';
 
 interface IProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
@@ -36,7 +36,7 @@ export const Input = ({ id, error, ...attr }: IProps) => {
         </label>
         {attr.type === 'password' ? (
           <div className={styles.eye} onClick={toggleType}>
-            {type === 'password' ? <EyeOpenIcon /> : <EyeCloseIcon />}
+            {type === 'password' ? <IconEyeOpen /> : <IconEyeClose />}
           </div>
         ) : null}
       </div>

@@ -1,4 +1,4 @@
-export const MenuIcon = () => {
+export const IconMenu = () => {
   return (
     <svg
       stroke="black"

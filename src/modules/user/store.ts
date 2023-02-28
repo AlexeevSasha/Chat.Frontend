@@ -9,6 +9,7 @@ import { customLocalStorage } from '../../common/utils/customLocalStorage';
 interface IUserStore {
   user: IUser | null;
   login: (values: IAuthSighIn) => void;
+  logout: () => void;
 }
 
 export const useUserStore = create<IUserStore>()(
@@ -20,6 +21,11 @@ export const useUserStore = create<IUserStore>()(
           const { user, access_token } = await new AuthRequest().login(values);
           customLocalStorage.setAccessToken(access_token);
           set({ user });
+        },
+        logout: async () => {
+          await new AuthRequest().logout();
+          set({ user: null });
+          localStorage.clear();
         },
       }))
     ),

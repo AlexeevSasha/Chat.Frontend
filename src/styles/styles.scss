@@ -1,10 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;1,100&family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+@import "fonts";
 @import "variables";
 @import "reset";
 
 body {
   font-family: 'Montserrat', sans-serif;
   color: var(--black);
+  font-weight: 400;
+  font-style: normal;
 }
 
 .container {

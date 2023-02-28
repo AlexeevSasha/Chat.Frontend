@@ -88,8 +88,8 @@
 
 //search
 .search {
-  border: 2px solid var(--light-gray);
-  background: var(--light-gray);
+  border: 2px solid var(--light-grey);
+  background: var(--light-grey);
   padding-left: 12px;
   transition: padding-left 0.3s ease-in-out;
 
@@ -104,6 +104,14 @@
 
   &::placeholder {
     opacity: 1;
+  }
+
+  &Fixed {
+    padding-left: 36px;
+
+    & + .searchIcon {
+      opacity: 1;
+    }
   }
 }
 

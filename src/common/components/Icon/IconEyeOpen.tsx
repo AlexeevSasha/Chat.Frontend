@@ -1,4 +1,4 @@
-export const EyeOpenIcon = () => {
+export const IconEyeOpen = () => {
   return (
     <svg
       stroke="black"
