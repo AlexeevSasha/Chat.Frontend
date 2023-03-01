@@ -20,9 +20,9 @@ export const useEventBusModal = ({ setModals }: IProps) => {
     });
     EventBusModal.on(EventBusNames.CLOSE_MODAL, ({ detail }) => {
       setModals((prev) => {
-        const newProducts = new Map(prev);
-        detail.id && newProducts.delete(detail.id);
-        return newProducts;
+        const newModal = new Map(prev);
+        detail.id && newModal.delete(detail.id);
+        return newModal;
       });
     });
   }, []);

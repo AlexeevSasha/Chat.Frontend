@@ -1,0 +1,81 @@
+@use 'src/styles/mixins/animate.toast.mixin' as mixin;
+
+.toast {
+  position: relative;
+  display: flex;
+  margin: 10px;
+  min-height: 60px;
+  width: 320px;
+  background: var(--white);
+  color: var(--black);
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 1px 10px 0 rgb(0 0 0 / 10%), 0 2px 15px 0 rgb(0 0 0 / 5%);
+  overflow: hidden;
+
+  &:hover {
+    & > .progress {
+      animation-play-state: paused;
+    }
+  }
+
+  @include mixin.toast(openRight)
+}
+
+.closeToast {
+  @include mixin.toast(closeRight)
+}
+
+.text {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  width: 20px;
+  flex-shrink: 0;
+  margin-right: 10px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+.close {
+  display: flex;
+  justify-content: right;
+  width: 20px;
+  height: fit-content;
+  flex-shrink: 0;
+  cursor: pointer;
+
+  &:hover {
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+
+  svg {
+    transition: all 0.3s ease-in-out;
+    fill: var(--black);
+    opacity: 0.5;
+  }
+}
+
+.progress {
+  position: absolute;
+  height: 5px;
+  width: 100%;
+  left: 0;
+  background: red;
+  bottom: 0;
+
+  @include mixin.toast(progress)
+}
+
+

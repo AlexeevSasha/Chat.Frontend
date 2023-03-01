@@ -2,7 +2,7 @@ import styles from './sideBar.module.scss';
 import { useRef } from 'react';
 import { useResizableWidth } from '../../hooks/useResizableWidth';
 import { SearchInput } from '../../ui/inputs/SearchInput';
-import { IconMenu } from '../Icon/MenuIcon';
+import { IconMenu } from '../Icon/IconMenu';
 import { Conversation } from '../../../modules/conversation/components/Conversation';
 import { useUserStore } from '../../../modules/user/store';
 
