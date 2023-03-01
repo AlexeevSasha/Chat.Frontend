@@ -14,7 +14,7 @@ export const useEventBusModal = ({ setModals }: IProps) => {
         const id = prev.size + 1;
         return new Map(prev).set(
           id,
-          <Modal key={id} id={id} open={detail?.open} renderElement={detail?.renderElement} />
+          <Modal key={id} id={id} renderElement={detail?.renderElement} />
         );
       });
     });

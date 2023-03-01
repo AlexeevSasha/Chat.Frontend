@@ -21,6 +21,7 @@ export const useEventBusModal = ({ setToasts }: IProps) => {
         ]);
       });
     });
+
     EventBusToast.on(EventBusNames.CLOSE_TOAST, ({ detail }) => {
       setToasts((prev) => {
         const newToast = new Map(prev);

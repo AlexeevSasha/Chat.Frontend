@@ -1,6 +1,5 @@
 export interface IModal {
   id?: number;
-  open?: boolean;
   renderElement?: JSX.Element;
 }
 
