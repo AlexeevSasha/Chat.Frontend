@@ -10,6 +10,7 @@ import { EventBusToast } from '../../utils/eventBus';
 import { EventBusNames } from '../../interfaces/eventBusNames';
 
 export const Toast = (props: IToast) => {
+  console.log(1);
   const handlerClose = useCallback(() => {
     EventBusToast.emit(EventBusNames.CLOSE_TOAST, {
       id: props.id,

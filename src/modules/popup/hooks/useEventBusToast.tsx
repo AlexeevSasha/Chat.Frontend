@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { EventBusNames } from '../interfaces/eventBusNames';
 import { EventBusToast } from '../utils/eventBus';
 import { Toast } from '../components/toast/Toast';
-import { IPositionToast } from '../interfaces/popup';
+import { IPositionToast, IToast } from '../interfaces/popup';
 
 interface IProps {
   setToasts: (
@@ -11,31 +11,40 @@ interface IProps {
 }
 
 export const useEventBusModal = ({ setToasts }: IProps) => {
+  const addToast = (toast: IToast) => {
+    setToasts((prev) => {
+      const prevElements = Array.from(prev.get(toast.position)?.values() || []);
+      return new Map(prev).set(toast.position, [
+        ...prevElements,
+        <Toast key={prevElements.length} id={prevElements.length} {...toast} />,
+      ]);
+    });
+  };
+  const deleteToast = (toast: IToast) => {
+    setToasts((prev) => {
+      const newToast = new Map(prev);
+      const allElementByPosition = prev.get(toast.position);
+
+      if (!allElementByPosition) return newToast;
+      if (allElementByPosition.length <= 1) {
+        newToast.delete(toast.position);
+        return newToast;
+      } else {
+        const test = allElementByPosition?.filter((el) => el.props.id !== toast.id);
+        return newToast.set(toast.position, test);
+      }
+    });
+  };
+
   useEffect(() => {
-    EventBusToast.on(EventBusNames.POPUP_TOAST, ({ detail }) => {
-      setToasts((prev) => {
-        const prevElements = Array.from(prev.get(detail.position)?.values() || []);
-        return new Map(prev).set(detail.position, [
-          ...prevElements,
-          <Toast key={prevElements.length} id={prevElements.length} {...detail} />,
-        ]);
-      });
-    });
+    EventBusToast.on(EventBusNames.POPUP_TOAST, ({ detail }) => addToast(detail));
+    EventBusToast.on(EventBusNames.CLOSE_TOAST, ({ detail }) => deleteToast(detail));
 
-    EventBusToast.on(EventBusNames.CLOSE_TOAST, ({ detail }) => {
-      setToasts((prev) => {
-        const newToast = new Map(prev);
-        const allElementByPosition = prev.get(detail.position);
+    EventBusToast.off(EventBusNames.POPUP_TOAST, ({ detail }) => addToast(detail));
 
-        if (!allElementByPosition) return newToast;
-        if (allElementByPosition.length <= 1) {
-          newToast.delete(detail.position);
-          return newToast;
-        } else {
-          const test = allElementByPosition?.filter((el) => el.props.id !== detail.id);
-          return newToast.set(detail.position, test);
-        }
-      });
-    });
+    return () => {
+      EventBusToast.off(EventBusNames.POPUP_TOAST);
+      EventBusToast.off(EventBusNames.CLOSE_TOAST);
+    };
   }, []);
 };
