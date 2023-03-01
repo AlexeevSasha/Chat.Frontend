@@ -1,6 +1,6 @@
-import { IPositionToast } from '../interfaces/popup';
+import { IPositionToast, ITypeToast } from '../interfaces/popup';
 
-interface IProps {
+interface IPositionProps {
   top?: number | string;
   left?: number | string;
   bottom?: number | string;
@@ -8,7 +8,7 @@ interface IProps {
   transform?: string;
 }
 
-export const getStylesPositionToast: { [key in IPositionToast]: IProps } = {
+export const getStylesPositionToast: { [key in IPositionToast]: IPositionProps } = {
   'top-left': {
     top: 0,
     left: 0,
@@ -34,5 +34,24 @@ export const getStylesPositionToast: { [key in IPositionToast]: IProps } = {
     bottom: 0,
     left: '50%',
     transform: 'translateX( -50%)',
+  },
+};
+
+export const getTypeToast: { [key in ITypeToast]: any } = {
+  info: {
+    color: '#fff',
+    background: '#3498db',
+  },
+  success: {
+    color: '#fff',
+    background: '#07bc0c',
+  },
+  warning: {
+    color: '#fff',
+    background: '#f1c40f',
+  },
+  error: {
+    color: '#fff',
+    background: '#e74c3c',
   },
 };

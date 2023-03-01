@@ -1,4 +1,3 @@
-import { IModal, IToast } from '../interfaces/popup';
 import { EventBusNames } from '../interfaces/eventBusNames';
 
 class EventBus<T> {
@@ -16,7 +15,7 @@ class EventBus<T> {
     this.eventTarget.addEventListener(type, listener as EventListener, { once: true });
   }
 
-  off(type: EventBusNames, listener?: (even: CustomEvent<T>) => void) {
+  off(type: EventBusNames, listener: (even: CustomEvent<T>) => void) {
     this.eventTarget.removeEventListener(type, listener as EventListener);
   }
 
@@ -25,7 +24,4 @@ class EventBus<T> {
   }
 }
 
-const EventBusModal = new EventBus<IModal>();
-const EventBusToast = new EventBus<IToast>();
-
-export { EventBusModal, EventBusToast };
+export { EventBus };

@@ -1,22 +1,20 @@
 import styles from './Toast.module.scss';
 import { useEffect, useRef } from 'react';
+import classNames from 'classnames';
 
 interface IProps {
   timeout: number;
   setClose: () => void;
+  isType?: boolean;
 }
 
-export const ToastProgress = ({ timeout, setClose }: IProps) => {
+export const ToastProgress = ({ timeout, setClose, isType }: IProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const handlerAnimation = () => {
-    setClose();
-  };
-
   useEffect(() => {
-    ref.current?.addEventListener('animationend', handlerAnimation);
+    ref.current?.addEventListener('animationend', setClose);
     return () => {
-      ref.current?.addEventListener('animationend', handlerAnimation);
+      ref.current?.addEventListener('animationend', setClose);
     };
   }, []);
 
@@ -26,7 +24,9 @@ export const ToastProgress = ({ timeout, setClose }: IProps) => {
         animationDuration: `${timeout}ms`,
       }}
       ref={ref}
-      className={styles.progress}
+      className={classNames(styles.progress, {
+        [styles.progressType]: isType,
+      })}
     />
   );
 };

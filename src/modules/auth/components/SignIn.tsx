@@ -2,8 +2,7 @@ import styles from './auth.module.scss';
 import { Form } from '../../forms/components/Form';
 import { Link } from 'react-router-dom';
 import { paths } from '../../../common/constants/paths';
-import { EventBusToast } from '../../popup/utils/eventBus';
-import { EventBusNames } from '../../popup/interfaces/eventBusNames';
+import { toast } from '../../popup/utils/toast';
 
 export const SignIn = () => {
   return (
@@ -11,10 +10,10 @@ export const SignIn = () => {
       <div className={styles.content}>
         <button
           onClick={() =>
-            EventBusToast.emit(EventBusNames.POPUP_TOAST, {
+            toast.open({
               text: 'lox' + Math.random(),
-              position: 'bottom-right',
-              type: 'info',
+              position: 'top-right',
+              type: 'error',
               timeout: 5000,
             })
           }
@@ -23,9 +22,10 @@ export const SignIn = () => {
         </button>
         <button
           onClick={() =>
-            EventBusToast.emit(EventBusNames.POPUP_TOAST, {
+            toast.open({
               text: 'lox' + Math.random().toString(36),
               position: 'top-center',
+              timeout: 5000,
             })
           }
         >

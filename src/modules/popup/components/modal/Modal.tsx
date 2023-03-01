@@ -1,17 +1,14 @@
-import { useCallback } from 'react';
 import styles from './modal.module.scss';
 import classNames from 'classnames';
 import { useDebounceModal } from '../../hooks/useDebounceModal';
-import { EventBusNames } from '../../interfaces/eventBusNames';
-import { EventBusModal } from '../../utils/eventBus';
 import { IModal } from '../../interfaces/popup';
+import { modal } from '../../utils/modal';
 
 export const Modal = ({ renderElement, id }: IModal) => {
-  const handlerClose = useCallback(() => {
-    EventBusModal.emit(EventBusNames.CLOSE_MODAL, { id });
-  }, []);
-
-  const { closeModal, animateClose } = useDebounceModal({ cb: handlerClose, delay: 250 });
+  const { closeModal, animateClose } = useDebounceModal({
+    cb: () => modal.close({ id }),
+    delay: 250,
+  });
 
   return (
     <div className={styles.modal}>

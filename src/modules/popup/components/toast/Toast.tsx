@@ -3,25 +3,25 @@ import { IconClose } from '../../../../common/components/Icon/IconClose';
 import { IconError } from '../../../../common/components/Icon/IconError';
 import { ToastProgress } from './ToastProgress';
 import classNames from 'classnames';
-import { useCallback } from 'react';
 import { IToast } from '../../interfaces/popup';
 import { useDebounceModal } from '../../hooks/useDebounceModal';
-import { EventBusToast } from '../../utils/eventBus';
-import { EventBusNames } from '../../interfaces/eventBusNames';
+import { toast } from '../../utils/toast';
+import { getTypeToast } from '../../utils/getStylesToast';
 
 export const Toast = (props: IToast) => {
-  console.log(1);
-  const handlerClose = useCallback(() => {
-    EventBusToast.emit(EventBusNames.CLOSE_TOAST, {
-      id: props.id,
-      position: props.position,
-    } as IToast);
-  }, []);
-
-  const { closeModal, animateClose } = useDebounceModal({ cb: handlerClose, delay: 450 });
+  const { closeModal, animateClose } = useDebounceModal({
+    cb: () =>
+      toast.close({
+        id: props.id,
+        position: props.position,
+        text: '',
+      }),
+    delay: 450,
+  });
 
   return (
     <div
+      style={props.type && getTypeToast[props.type]}
       className={classNames(styles.toast, {
         [styles.closeToast]: animateClose,
       })}
@@ -32,10 +32,17 @@ export const Toast = (props: IToast) => {
         </div>
       ) : null}
       <div className={styles.text}>{props.text}</div>
-      <div className={styles.close} onClick={closeModal}>
+      <div
+        className={classNames(styles.close, {
+          [styles.closeType]: props.type,
+        })}
+        onClick={closeModal}
+      >
         <IconClose />
       </div>
-      {props.timeout ? <ToastProgress setClose={closeModal} timeout={props.timeout} /> : null}
+      {props.timeout ? (
+        <ToastProgress setClose={closeModal} timeout={props.timeout} isType={!!props.type} />
+      ) : null}
     </div>
   );
 };

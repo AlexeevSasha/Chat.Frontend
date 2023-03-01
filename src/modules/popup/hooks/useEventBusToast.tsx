@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { EventBusNames } from '../interfaces/eventBusNames';
-import { EventBusToast } from '../utils/eventBus';
 import { Toast } from '../components/toast/Toast';
 import { IPositionToast, IToast } from '../interfaces/popup';
+import { toast } from '../utils/toast';
 
 interface IProps {
   setToasts: (
@@ -11,40 +11,39 @@ interface IProps {
 }
 
 export const useEventBusModal = ({ setToasts }: IProps) => {
-  const addToast = (toast: IToast) => {
+  const addToast = (event: CustomEvent<IToast>) => {
     setToasts((prev) => {
-      const prevElements = Array.from(prev.get(toast.position)?.values() || []);
-      return new Map(prev).set(toast.position, [
+      const prevElements = Array.from(prev.get(event.detail.position)?.values() || []);
+      return new Map(prev).set(event.detail.position, [
         ...prevElements,
-        <Toast key={prevElements.length} id={prevElements.length} {...toast} />,
+        <Toast key={prevElements.length} id={prevElements.length} {...event.detail} />,
       ]);
     });
   };
-  const deleteToast = (toast: IToast) => {
+  const deleteToast = (event: CustomEvent<IToast>) => {
+    const { position, id } = event.detail;
     setToasts((prev) => {
       const newToast = new Map(prev);
-      const allElementByPosition = prev.get(toast.position);
+      const allElementByPosition = prev.get(position);
 
       if (!allElementByPosition) return newToast;
       if (allElementByPosition.length <= 1) {
-        newToast.delete(toast.position);
+        newToast.delete(position);
         return newToast;
       } else {
-        const test = allElementByPosition?.filter((el) => el.props.id !== toast.id);
-        return newToast.set(toast.position, test);
+        const test = allElementByPosition?.filter((el) => el.props.id !== id);
+        return newToast.set(position, test);
       }
     });
   };
 
   useEffect(() => {
-    EventBusToast.on(EventBusNames.POPUP_TOAST, ({ detail }) => addToast(detail));
-    EventBusToast.on(EventBusNames.CLOSE_TOAST, ({ detail }) => deleteToast(detail));
-
-    EventBusToast.off(EventBusNames.POPUP_TOAST, ({ detail }) => addToast(detail));
+    toast.on(EventBusNames.POPUP_TOAST, addToast);
+    toast.on(EventBusNames.CLOSE_TOAST, deleteToast);
 
     return () => {
-      EventBusToast.off(EventBusNames.POPUP_TOAST);
-      EventBusToast.off(EventBusNames.CLOSE_TOAST);
+      toast.off(EventBusNames.POPUP_TOAST, addToast);
+      toast.off(EventBusNames.CLOSE_TOAST, deleteToast);
     };
   }, []);
 };

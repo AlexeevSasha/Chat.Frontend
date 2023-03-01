@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { getStylesPositionToast } from '../utils/getStylesPositionToast';
+import { getStylesPositionToast } from '../utils/getStylesToast';
 import { IPositionToast } from '../interfaces/popup';
 import { useEventBusModal } from '../hooks/useEventBusToast';
 
