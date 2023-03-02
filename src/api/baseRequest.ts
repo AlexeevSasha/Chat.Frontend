@@ -1,3 +1,5 @@
+import { toast } from '../modules/popup/utils/toast';
+
 export class BaseRequest {
   baseApi: string;
 
@@ -10,25 +12,35 @@ export class BaseRequest {
     const headersMultiPart =
       typeof data.body === 'string' ? { 'Content-type': 'application/json;charset=utf-8' } : null;
 
-    const response = await fetch(this.baseApi + url, {
-      ...data,
-      headers: {
-        ...headersToken,
-        ...headersMultiPart,
-      },
-      credentials: 'include',
-    });
-    if (response.ok) {
-      if (response.headers.get('Content-Length') === '0') {
-        return true;
+    try {
+      const response = await fetch(this.baseApi + url, {
+        ...data,
+        headers: {
+          ...headersToken,
+          ...headersMultiPart,
+        },
+        credentials: 'include',
+      });
+      if (response.ok) {
+        if (response.headers.get('Content-Length') === '0') {
+          return true;
+        }
+        const typeResponse = response.headers.get('Content-type');
+        if (typeResponse === 'aplication/text') {
+          return await response.text();
+        }
+        return await response.json();
+      } else {
+        const { message } = await response.json();
+        throw new Error(message);
       }
-      const typeResponse = response.headers.get('Content-type');
-      if (typeResponse === 'aplication/text') {
-        return await response.text();
-      }
-      return await response.json();
-    } else {
-      throw await response.json();
+    } catch (error: any) {
+      toast.open({
+        position: 'top-right',
+        text: error?.message || 'Sorry, something went wrong.',
+        type: 'error',
+        timeout: 5000,
+      });
     }
   }
 

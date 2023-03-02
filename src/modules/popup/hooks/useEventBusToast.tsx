@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { EventBusNames } from '../interfaces/eventBusNames';
+import { EventBusNames } from '../../../common/interfaces/eventBusNames';
 import { Toast } from '../components/toast/Toast';
 import { IPositionToast, IToast } from '../interfaces/popup';
 import { toast } from '../utils/toast';
@@ -12,11 +12,12 @@ interface IProps {
 
 export const useEventBusModal = ({ setToasts }: IProps) => {
   const addToast = (event: CustomEvent<IToast>) => {
+    const id = 'id_' + Date.now().toString(36);
     setToasts((prev) => {
       const prevElements = Array.from(prev.get(event.detail.position)?.values() || []);
       return new Map(prev).set(event.detail.position, [
         ...prevElements,
-        <Toast key={prevElements.length} id={prevElements.length} {...event.detail} />,
+        <Toast key={id} id={id} {...event.detail} />,
       ]);
     });
   };
@@ -38,11 +39,11 @@ export const useEventBusModal = ({ setToasts }: IProps) => {
   };
 
   useEffect(() => {
-    toast.on(EventBusNames.POPUP_TOAST, addToast);
+    toast.on(EventBusNames.OPEN_TOAST, addToast);
     toast.on(EventBusNames.CLOSE_TOAST, deleteToast);
 
     return () => {
-      toast.off(EventBusNames.POPUP_TOAST, addToast);
+      toast.off(EventBusNames.OPEN_TOAST, addToast);
       toast.off(EventBusNames.CLOSE_TOAST, deleteToast);
     };
   }, []);

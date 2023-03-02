@@ -17,7 +17,7 @@ export interface IToast {
   text: string;
   position: IPositionToast;
   open?: boolean;
-  id?: number;
+  id?: string;
   type?: ITypeToast;
   timeout?: number;
 }

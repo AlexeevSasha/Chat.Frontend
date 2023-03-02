@@ -1,6 +1,5 @@
 import styles from './Toast.module.scss';
 import { IconClose } from '../../../../common/components/Icon/IconClose';
-import { IconError } from '../../../../common/components/Icon/IconError';
 import { ToastProgress } from './ToastProgress';
 import classNames from 'classnames';
 import { IToast } from '../../interfaces/popup';
@@ -14,23 +13,20 @@ export const Toast = (props: IToast) => {
       toast.close({
         id: props.id,
         position: props.position,
-        text: '',
       }),
     delay: 450,
   });
 
+  const { color, icon, background } = getTypeToast[props.type || 'default'];
+
   return (
     <div
-      style={props.type && getTypeToast[props.type]}
+      style={{ background, color }}
       className={classNames(styles.toast, {
         [styles.closeToast]: animateClose,
       })}
     >
-      {props.type ? (
-        <div className={styles.icon}>
-          <IconError />
-        </div>
-      ) : null}
+      {props.type ? <div className={classNames(styles.icon)}>{icon}</div> : null}
       <div className={styles.text}>{props.text}</div>
       <div
         className={classNames(styles.close, {

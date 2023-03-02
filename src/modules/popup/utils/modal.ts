@@ -1,10 +1,10 @@
 import { IModal } from '../interfaces/popup';
-import { EventBus } from './eventBus';
-import { EventBusNames } from '../interfaces/eventBusNames';
+import { EventBus } from '../../../common/utils/eventBus';
+import { EventBusNames } from '../../../common/interfaces/eventBusNames';
 
 class Modal extends EventBus<IModal> {
   open(details: IModal) {
-    this.emit(EventBusNames.POPUP_MODAL, details);
+    this.emit(EventBusNames.OPEN_MODAL, details);
   }
   close(details: IModal) {
     this.emit(EventBusNames.CLOSE_MODAL, details);

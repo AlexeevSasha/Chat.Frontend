@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { EventBusNames } from '../interfaces/eventBusNames';
+import { EventBusNames } from '../../../common/interfaces/eventBusNames';
 import { Modal } from '../components/modal/Modal';
 import { IModal } from '../interfaces/popup';
 import { modal } from '../utils/modal';
@@ -27,11 +27,11 @@ export const useEventBusModal = ({ setModals }: IProps) => {
   };
 
   useEffect(() => {
-    modal.on(EventBusNames.POPUP_MODAL, addModal);
+    modal.on(EventBusNames.OPEN_MODAL, addModal);
     modal.on(EventBusNames.CLOSE_MODAL, deleteModal);
 
     return () => {
-      modal.off(EventBusNames.POPUP_MODAL, addModal);
+      modal.off(EventBusNames.OPEN_MODAL, addModal);
       modal.off(EventBusNames.CLOSE_MODAL, deleteModal);
     };
   }, []);
