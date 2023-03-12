@@ -1,0 +1,44 @@
+.container {
+  cursor: pointer;
+  display: flex;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 5px 10px;
+}
+
+.avatar {
+  flex-shrink: 0;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: var(--blueMain);
+  margin-right: 10px;
+}
+
+.wrapper {
+  flex: 1;
+  display: grid;
+  align-items: center;
+}
+
+.info {
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 15px;
+}
+
+.date {
+  font-size: 13px;
+  color: #8d8d8d;
+  margin-left: 10px;
+  flex-shrink: 0;
+}

@@ -1,19 +1,18 @@
 import { useEffect } from 'react';
 import { useConversationStore } from '../store';
-import { ConversationCard } from './ConversationCard';
+import { ConversationCard } from './ConversationCard/ConversationCard';
 
 export const ConversationsContainer = () => {
   const { getConversations, conversations } = useConversationStore((state) => state);
 
   useEffect(() => {
-    // getConversations();
+    getConversations();
   }, []);
 
-  return conversations ? (
+  return conversations.length ? (
     <div>
-      <button onClick={getConversations}>sadfasdf</button>
-      {conversations.map((el) => (
-        <ConversationCard key={el.id} />
+      {conversations?.map((el) => (
+        <ConversationCard conversation={el} key={el.id} />
       ))}
     </div>
   ) : (
